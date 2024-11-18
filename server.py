@@ -200,12 +200,7 @@ def before_request():
         session['last_activity'] = datetime.now().timestamp()
 
 if __name__ == '__main__':
-    app.run()
-
-
-
-
-   # print(f"TOTP Secret: {TOTP_SECRET}")
-    #print("Visit /setup to get the Google Authenticator setup URL")
-    # In production, use proper SSL certificates
-    #app.run(host='0.0.0.0', port=5000, debug=True, ssl_context=('cert.pem', 'key.pem'))
+print(f"TOTP Secret: {TOTP_SECRET}")
+print("Visit /setup to get the Google Authenticator setup URL")
+# In production, use proper SSL certificates
+app.run(host='0.0.0.0', port=5000, debug=True, ssl_context=('cert.pem', 'key.pem'))

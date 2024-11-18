@@ -7,18 +7,21 @@ import base64
 from io import BytesIO
 from datetime import datetime
 import secrets
+from dotenv import load_dotenv
+import os
 
+load_dotenv()  # Load environment variables from .env file
 # Set up Flask app
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)  # Generate a secure random secret key
 
 # Email configuration - Add these lines after app initialization
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = ' pasindudewviman59@gmail.com'
-app.config['MAIL_PASSWORD'] = 'ulnx kdit asnd zbjv'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
+app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT'))
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS') == 'True'
+app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL') == 'True'
 mail = Mail(app)
 
 # Directory to save uploaded files
